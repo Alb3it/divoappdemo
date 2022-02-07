@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { React, Dimensions, Text, View, TouchableHighlight, TouchableOpacity, TextInput, Image } from 'react-native';
 import * as Location from 'expo-location';
 import styled from 'styled-components/native';
+import { handleLogin } from '../exports/Api';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function LoginScreen({navigation}) {
@@ -33,16 +34,10 @@ export default function LoginScreen({navigation}) {
         setPw(text);
     }
 
-    const login = () => {
-        //if((Id!=="") && (Pw!=="")) {
-            console.log("trylogin");
-            navigation.navigate('Main', {ID: Id, PW: Pw})
-        //}
-    }
-//i am fool programter
     useEffect(() => {
         firstAsk();
     }, [])
+
     return (
         <L.RootContainer width={WIDTH} height={HEIGHT}>
         {
@@ -51,14 +46,14 @@ export default function LoginScreen({navigation}) {
               <L.LoginHeader source={require('../icons/DIV0.png')} />
               <L.LoginContainer>
                 <L.LoginIDTitle source={require('../icons/id.png')} />
-                <L.LoginIDInput onChange={WriteId} placeholder="email address" placeholderTextColor="#4f556e" />
+                <L.LoginIDInput value={Id} onChange={WriteId} placeholder="email address" placeholderTextColor="#4f556e" />
               </L.LoginContainer>
               <L.LoginContainer>
                 <L.LoginPWTitle source={require('../icons/pw.png')} />
-                <L.LoginPWInput onChange={WritePw} secureTextEntry={true}  placeholder="password" placeholderTextColor="#4f556e" />
+                <L.LoginPWInput value={Pw} onChange={WritePw} secureTextEntry={true}  placeholder="password" placeholderTextColor="#4f556e" />
               </L.LoginContainer>
               <L.LoginButtons>
-                <L.LoginButton onPress={()=>navigation.navigate('Main', {ID: Id, PW: Pw})} underlayColor="#4f556e" activeOpacity={0.5}>
+                <L.LoginButton onPress={() => handleLogin(Id,Pw, setId, setPw)} underlayColor="#4f556e" activeOpacity={0.5}>
                   <L.LoginButtonText>Login</L.LoginButtonText>
                 </L.LoginButton>
                 <L.SignUpButton>
