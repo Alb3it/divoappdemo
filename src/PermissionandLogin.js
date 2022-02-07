@@ -39,7 +39,7 @@ export default function LoginScreen({navigation}) {
             navigation.navigate('Main', {ID: Id, PW: Pw})
         //}
     }
-
+//i am fool programter
     useEffect(() => {
         firstAsk();
     }, [])
