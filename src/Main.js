@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { React, Dimensions, Text, View, TouchableHighlight, TouchableOpacity, TextInput, Image } from 'react-native';
+import { React, Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export default function MainScreen({route, navigation}) {
@@ -10,7 +10,6 @@ export default function MainScreen({route, navigation}) {
         <M.RootContainer width={WIDTH} height={HEIGHT}>
             <M.Test>Token: {token}</M.Test>
         </M.RootContainer>
-
     );
 }
 
@@ -21,7 +20,6 @@ M.RootContainer = styled.View`
     display: flex;
     justify-content: center;
     align-items: center;
-    
 `;
 
 M.Test = styled.Text`

@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
+import {PStoMain} from "../src/PermissionandLogin"
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from "@react-navigation/native";
 
 const backend = 'https://www.divocorp.kr/api/';
@@ -26,19 +28,16 @@ export const compKeyListUrl = backend + 'keywordtool/compkeylist/';
 export const compKeyChangeUrl = backend + 'keywordtool/compkeychange/';
 export const compKeyGraphUrl = backend + 'keywordtool/compkeygraph/';
 
-const recieve = async(res) => {
+const recieve = async(res, navigation) => {
     try {
-        return {
-            await AsyncStorage.setItem('token', res.data.key);
-        Navigation.navigate('Main', {token: res.data.key};
-        }
-        
+        await AsyncStorage.setItem('token', res.data.key);
+        navigation.navigate('Main', res.data.key);
     } catch(e) {
-        console.log("erorrr")
+        console.log(e)
     }
 }
 
-export const handleLogin = async (id, pw, setId, setPw) => {
+export const handleLogin = async (id, pw, setId, setPw, navigation) => {
     const user = {
         email: id,
         password: pw
@@ -46,9 +45,8 @@ export const handleLogin = async (id, pw, setId, setPw) => {
     console.log(user);
 
     axios.post(loginUrl, user).then(
-        (res)=> recieve(res)
+        (res)=> recieve(res, navigation)
     ).catch(e => {
-        
         alert("이메일 또는 비밀번호가 일치하지 않습니다.");
         setId('');
         setPw('');
