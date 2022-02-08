@@ -1,18 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { React, Dimensions, Text, View, TouchableHighlight, TouchableOpacity, TextInput, Image } from 'react-native';
+import { Keyboard, React, Text, View, TouchableHighlight, TouchableOpacity, TextInput, Image } from 'react-native';
 import * as Location from 'expo-location';
 import {S} from './styles';
 import { handleLogin } from '../exports/Api';
-import {NavigationContainer} from '@react-navigation/native';
 
 
 export default function LoginScreen({navigation}) {
-    const WIDTH = Dimensions.get('window').width;
-    const HEIGHT = Dimensions.get('window').height;
     const [ok, setOk] = useState(false);
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+    const [kh, setKh] = useState(0);
 
     const firstAsk = async () => {
         const { granted } = await Location.requestForegroundPermissionsAsync();
@@ -35,13 +33,23 @@ export default function LoginScreen({navigation}) {
 
     useEffect(() => {
         firstAsk();
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow);
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide);
     }, [])
 
+    _keyboardDidShow = (e) => {
+      setKh(e.endCoordinates.height);
+    };
+  
+    _keyboardDidHide = () => {
+      setKh(0);
+    };
+
     return (
-        <S.RootContainer width={WIDTH} height={HEIGHT}>
+        <S.RootLoginContainer>
         {
           ok ?
-            <S.Login>
+            <S.Login keyboardHeight={kh}>
               <S.LoginHeader source={require('../icons/DIV0.png')} />
               <S.LoginContainer>
                 <S.LoginIDTitle source={require('../icons/id.png')} />
@@ -52,7 +60,7 @@ export default function LoginScreen({navigation}) {
                 <S.LoginPWInput value={pw} onChange={WritePw} secureTextEntry={true}  placeholder="password" />
               </S.LoginContainer>
               <S.LoginButtons>
-                <S.LoginButton onPress={() => handleLogin(Id,Pw, setId, setPw, navigation)} activeOpacity={0.5}>
+                <S.LoginButton onPress={() => handleLogin(id,pw, setId, setPw, navigation)} activeOpacity={0.5}>
                   <S.LoginButtonText>Login</S.LoginButtonText>
                 </S.LoginButton>
                 <S.SignUpButton>
@@ -66,6 +74,6 @@ export default function LoginScreen({navigation}) {
             </S.FirstDisplay>
         }
         <StatusBar style="light" />
-      </S.RootContainer>
+      </S.RootLoginContainer>
     );
 }

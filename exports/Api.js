@@ -1,9 +1,5 @@
 import axios from "axios";
-import React from "react";
-import {PStoMain} from "../src/PermissionandLogin"
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from "@react-navigation/native";
 
 const backend = 'https://www.divocorp.kr/api/';
 
@@ -31,7 +27,7 @@ export const compKeyGraphUrl = backend + 'keywordtool/compkeygraph/';
 const recieve = async(res, navigation) => {
     try {
         await AsyncStorage.setItem('token', res.data.key);
-        navigation.navigate('Main', res.data.key);
+        navigation.navigate('Main');
     } catch(e) {
         console.log(e)
     }
@@ -42,8 +38,6 @@ export const handleLogin = async (id, pw, setId, setPw, navigation) => {
         email: id,
         password: pw
     }
-    console.log(user);
-
     axios.post(loginUrl, user).then(
         (res)=> recieve(res, navigation)
     ).catch(e => {

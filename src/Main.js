@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react';
 import { React, Dimensions } from 'react-native';
+import {S} from './styles';
 import styled from 'styled-components/native';
+import BottomTab from './BottomTab';
 
-export default function MainScreen({route, navigation}) {
-    const token = route.params.token;
-    const WIDTH = Dimensions.get('window').width;
-    const HEIGHT = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width;
+const HEIGHT = Dimensions.get('window').height;
+
+export default function MainScreen({ route, navigation }) {
+    const { token } = route.params;
     return (
-        <M.RootContainer width={WIDTH} height={HEIGHT}>
-            <M.Test>Token: {token}</M.Test>
-        </M.RootContainer>
+        <S.TestContainer width={WIDTH} height={HEIGHT}>
+            <M.Test>MainScreen</M.Test>
+            <BottomTab navigation={navigation} category="Main" token={token}/>
+        </S.TestContainer>
     );
 }
 
 const M = {};
-
-M.RootContainer = styled.View`
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 
 M.Test = styled.Text`
     color: black;

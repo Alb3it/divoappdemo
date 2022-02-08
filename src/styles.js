@@ -1,24 +1,42 @@
-import styled from '../node_modules/styled';
+import styled from '../node_modules/styled-components'
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Dimensions } from 'react-native';
 
 export const S = {};
-const PLACEHOLDER_COLOR="#4f556e"
+const LOGO_COLOR = "#363b4e"
+const PLACEHOLDER_COLOR = "#4f556e"
+const DEVICE_HEIGHT = Dimensions.get('window').height;
+const DEVICE_WIDTH = Dimensions.get('window').width;
 
-S.RootContainer = styled.View`
+S.RootLoginContainer = styled(SafeAreaView)`
   display: flex;
-  background-color: white;
+  width: ${DEVICE_WIDTH}px;
+  height: ${DEVICE_HEIGHT}px;
+  background-color: ${LOGO_COLOR};
   color: black;
   align-items: center;  
   justify-content: center;
-  background-color: #363b4e;
 `;
 
-S.FirstDisplay = styled.View`
+S.RootContainer = styled(SafeAreaView)`
+display: flex;
+flex-direction: column;
+width: ${DEVICE_WIDTH}px;
+height: ${DEVICE_HEIGHT}px;
+background-color: white;
+color: black;
+align-items: center;  
+justify-content: space-between;
+`;
+
+S.FirstDisplay = styled(SafeAreaView)`
   background-color: blue;
   display: flex; 
 `;
 
 S.Login = styled.View`
   display: flex;
+  margin-bottom: ${(props) => props.keyboardHeight}px;
   width: 100%;
   height: 100%;
   align-items: center;
@@ -60,6 +78,7 @@ S.LoginIDInput = styled.TextInput.attrs({
   placeholderTextColor: PLACEHOLDER_COLOR,
 })`
   width: 80%;
+  color: white;
 `;
 
 S.LoginPWInput = styled.TextInput.attrs({
@@ -67,6 +86,7 @@ S.LoginPWInput = styled.TextInput.attrs({
 })`
   width: 80%;
   padding-left: 1.5%;
+  color: white;
 `;
 
 
