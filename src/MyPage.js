@@ -4,14 +4,13 @@ import { S } from './styles';
 import styled from 'styled-components/native';
 import BottomTab from './BottomTab';
 
-export default function MyPageScreen({route, navigation}) {
-    const { token } = route.params;
+export default function MyPageScreen({navigation}) {
     const WIDTH = Dimensions.get('window').width;
     const HEIGHT = Dimensions.get('window').height;
     return (
         <S.RootContainer width={WIDTH} height={HEIGHT}>
             <M.Test>My Page</M.Test>
-            <BottomTab navigation={navigation} category="MyPage" token={token}/>
+            <BottomTab navigation={navigation} category="MyPage"/>
         </S.RootContainer>
     );
 }
