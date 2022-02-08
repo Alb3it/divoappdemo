@@ -1,5 +1,6 @@
 import styled from '../node_modules/styled-components'
 import { SafeAreaView } from "react-native-safe-area-context";
+import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions } from 'react-native';
 
 export const S = {};
@@ -19,14 +20,14 @@ S.RootLoginContainer = styled(SafeAreaView)`
 `;
 
 S.RootContainer = styled(SafeAreaView)`
-display: flex;
-flex-direction: column;
-width: ${DEVICE_WIDTH}px;
-height: ${DEVICE_HEIGHT}px;
-background-color: white;
-color: black;
-align-items: center;  
-justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  width: ${DEVICE_WIDTH}px;
+  height: ${DEVICE_HEIGHT}px;
+  background-color: white;
+  color: black;
+  align-items: center;  
+  justify-content: space-between;
 `;
 
 S.FirstDisplay = styled(SafeAreaView)`
@@ -62,16 +63,16 @@ S.LoginContainer = styled.View`
 `;
 
 S.LoginIDTitle = styled.Image`
-    width: 7%
-    height: 45%;
-    margin-right: 5%;
-    margin-bottom: -1%;
+  width: 7%
+  height: 45%;
+  margin-right: 5%;
+  margin-bottom: -1%;
 `;
 
 S.LoginPWTitle = styled.Image`
-    width: 5.5%
-    height: 68%;
-    margin-right: 5%;
+  width: 5.5%
+  height: 68%;
+  margin-right: 5%;
 `;
 
 S.LoginIDInput = styled.TextInput.attrs({
@@ -121,6 +122,48 @@ S.SignUpButton = styled.TouchableOpacity`
 `;
 
 S.SignUpButtonText = styled.Text`
-color: white
-font-size: 17px;
+  color: white;
+  font-size: 17px;
+`;
+
+S.BottomTabContainer = styled.View`
+  width: ${DEVICE_WIDTH}px;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: #FFFFFF;
+  border-color: #d2d2d2;
+  border-width: 2px;
+  border-radius: 10px;
+  shadow-color: #d2d2d2;
+  shadow-offset: {width: 0, height: -2};
+  shadow-opacity: 0.55;
+  shadow-radius: 1px;
+`;
+
+S.BottomTabButton = styled.TouchableOpacity`
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+
+S.BottomTabGradient = styled(LinearGradient)`
+  ${(props) => 
+    props.category === props.mytegory ? 
+    "transform: translateY(-3px);transform: scale(1.1, 1.1);padding: 8px;border-radius:5px;width:57px;"
+    : null
+  } 
+`;
+
+S.BottomTabImage = styled.Image`
+  width: 30px;
+  height: 30px;
+`;
+
+S.BottomTabText = styled.Text`
+  font-weight: bold;
+  font-size: 8px;
+  color: #828282;
+  width: 30px;
+  text-align: center;
 `;
