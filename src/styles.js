@@ -1,11 +1,12 @@
 import styled from '../node_modules/styled-components'
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions } from 'react-native';
+import { LinearGradient } from "expo-linear-gradient"
+import { Dimensions, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 export const S = {};
-const LOGO_COLOR = "#363b4e"
-const PLACEHOLDER_COLOR = "#4f556e"
+const LOGO_COLOR = "#363b4e";
+const PLACEHOLDER_COLOR = "#4f556e";
 const DEVICE_HEIGHT = Dimensions.get('window').height;
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
@@ -15,15 +16,13 @@ S.RootLoginContainer = styled(SafeAreaView)`
   height: ${DEVICE_HEIGHT}px;
   background-color: ${LOGO_COLOR};
   color: black;
-  align-items: center;  
+  align-items: center;
   justify-content: center;
 `;
 
 S.RootContainer = styled(SafeAreaView)`
   display: flex;
   flex-direction: column;
-  width: ${DEVICE_WIDTH}px;
-  height: ${DEVICE_HEIGHT}px;
   background-color: white;
   color: black;
   align-items: center;  
@@ -112,7 +111,7 @@ S.LoginButton = styled.TouchableHighlight`
 `;
 
 S.LoginButtonText = styled.Text`
-  color: white
+  color: white;
   font-size: 20px;
 `;
 
@@ -129,7 +128,7 @@ S.SignUpButtonText = styled.Text`
 S.BottomTabContainer = styled.View`
   width: ${DEVICE_WIDTH}px;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: #FFFFFF;
   border-color: #d2d2d2;
   border-width: 2px;
@@ -138,6 +137,8 @@ S.BottomTabContainer = styled.View`
   shadow-offset: {width: 0, height: -2};
   shadow-opacity: 0.55;
   shadow-radius: 1px;
+  position: absolute;
+  bottom: 0px;
 `;
 
 S.BottomTabButton = styled.TouchableOpacity`
@@ -150,9 +151,13 @@ S.BottomTabButton = styled.TouchableOpacity`
 S.BottomTabGradient = styled(LinearGradient)`
   ${(props) => 
     props.category === props.mytegory ? 
-    "transform: translateY(-3px);transform: scale(1.1, 1.1);padding: 8px;border-radius:5px;width:57px;"
+    "transform: translateY(-3px);border-radius:5px;"
     : null
-  } 
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
 `;
 
 S.BottomTabImage = styled.Image`
@@ -167,3 +172,4 @@ S.BottomTabText = styled.Text`
   width: 30px;
   text-align: center;
 `;
+

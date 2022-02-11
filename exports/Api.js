@@ -27,7 +27,7 @@ export const compKeyGraphUrl = backend + 'keywordtool/compkeygraph/';
 const recieve = async(res, navigation) => {
     try {
         await AsyncStorage.setItem('token', res.data.key);
-        navigation.navigate('Main');
+        navigation.navigate('MainNavigator');
     } catch(e) {
         console.log(e)
     }

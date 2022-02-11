@@ -21,12 +21,12 @@ export default function LoginScreen({navigation}) {
         }
     }
 
-    const WriteId = (event) => {
+    const writeId = (event) => {
         const {eventCount, target, text} = event.nativeEvent;
         setId(text);
     }
 
-    const WritePw = (event) => {
+    const writePw = (event) => {
         const {eventCount, target, text} = event.nativeEvent;
         setPw(text);
     }
@@ -53,11 +53,11 @@ export default function LoginScreen({navigation}) {
               <S.LoginHeader source={require('../icons/DIV0.png')} />
               <S.LoginContainer>
                 <S.LoginIDTitle source={require('../icons/id.png')} />
-                <S.LoginIDInput value={id} onChange={WriteId} placeholder="email address" />
+                <S.LoginIDInput value={id} onChange={writeId} placeholder="email address" />
               </S.LoginContainer>
               <S.LoginContainer>
                 <S.LoginPWTitle source={require('../icons/pw.png')} />
-                <S.LoginPWInput value={pw} onChange={WritePw} secureTextEntry={true}  placeholder="password" />
+                <S.LoginPWInput value={pw} onChange={writePw} secureTextEntry={true}  placeholder="password" />
               </S.LoginContainer>
               <S.LoginButtons>
                 <S.LoginButton onPress={() => handleLogin(id,pw, setId, setPw, navigation)} activeOpacity={0.5}>
